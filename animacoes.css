@@ -1,0 +1,246 @@
+/* ==========================================================
+   HULO — camada extra de animações (hover + ambiente)
+   Carregue DEPOIS de style.css e do css da página.
+   ========================================================== */
+
+:root {
+  --gold: #a9823f;
+  --gold-soft: rgba(169,130,63,.14);
+  --ease-out: cubic-bezier(.2,.8,.25,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Corrige: a animação de entrada (.reveal) segurava o transform no estado final
+   e impedia os efeitos de hover de elevar os cards. */
+.reveal { animation-fill-mode: backwards; }
+
+/* Entrada escalonada nos grupos de cards */
+.service-grid > :nth-child(1), .detail-service:nth-child(1), .pricing-card:nth-child(1), .process-step:nth-child(1), .portfolio-placeholder:nth-child(1) { animation-delay: .05s; }
+.service-grid > :nth-child(2), .detail-service:nth-child(2), .pricing-card:nth-child(2), .process-step:nth-child(2), .portfolio-placeholder:nth-child(2) { animation-delay: .15s; }
+.service-grid > :nth-child(3), .detail-service:nth-child(3), .pricing-card:nth-child(3), .process-step:nth-child(3), .portfolio-placeholder:nth-child(3) { animation-delay: .25s; }
+.service-grid > :nth-child(4), .detail-service:nth-child(4) { animation-delay: .35s; }
+.service-grid > :nth-child(5), .detail-service:nth-child(5) { animation-delay: .45s; }
+
+/* ---------- Animações de ambiente (sempre ativas, discretas) ---------- */
+.status-dot { animation: dot-pulse 2.4s ease-in-out infinite; }
+.orbit-one { animation: orbit-spin 38s linear infinite; }
+.orbit-two { animation: orbit-spin 52s linear infinite reverse; }
+.art-cross { animation: cross-bob 4.5s ease-in-out infinite; }
+.cross-two { animation-delay: -2s; }
+.contact-spark { animation: spark-twinkle 3s ease-in-out infinite; }
+.contact-orbit-dot { animation: dot-pulse 2.8s ease-in-out infinite; }
+.sparkle, .chip-icon { display: inline-grid; animation: spark-twinkle 3.6s ease-in-out infinite; }
+.pricing-badge { animation: badge-glow 3s ease-in-out infinite; }
+
+@keyframes dot-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(176,138,69,.45); } 60% { box-shadow: 0 0 0 8px rgba(176,138,69,0); } }
+@keyframes orbit-spin { to { rotate: 360deg; } }
+@keyframes cross-bob { 0%,100% { translate: 0 0; rotate: 0deg; } 50% { translate: 0 -8px; rotate: 90deg; } }
+@keyframes spark-twinkle { 0%,100% { opacity: 1; scale: 1; } 50% { opacity: .55; scale: 1.18; } }
+@keyframes badge-glow { 0%,100% { box-shadow: 0 0 0 0 rgba(169,130,63,.0); } 50% { box-shadow: 0 0 18px 2px rgba(169,130,63,.28); } }
+@keyframes arrow-nudge { 0%,100% { translate: 0 0; } 50% { translate: 3px -3px; } }
+@keyframes icon-wiggle { 0%,100% { rotate: 0deg; } 25% { rotate: -10deg; } 75% { rotate: 10deg; } }
+@keyframes list-in { from { opacity: .4; translate: -8px 0; } to { opacity: 1; translate: 0 0; } }
+
+@media (hover: hover) {
+
+  /* ---------- Cabeçalho ---------- */
+  .brand-mark { transition: transform .5s var(--ease-spring), box-shadow .3s ease, background .3s ease; }
+  .brand:hover .brand-mark { transform: rotate(-12deg) scale(1.12); box-shadow: 0 6px 16px rgba(169,130,63,.3); background: linear-gradient(145deg,#ecd9ae,#fff); }
+  .brand-dot { display: inline-block; transition: transform .35s var(--ease-spring); }
+  .brand:hover .brand-dot { transform: translateY(-4px) scale(1.5); }
+
+  .site-nav > a:not(.nav-contact) { position: relative; padding-block: 6px; }
+  .site-nav > a:not(.nav-contact)::after { position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: var(--gold); content: ""; transform: scaleX(0); transform-origin: right; transition: transform .35s var(--ease-out); }
+  .site-nav > a:not(.nav-contact):hover::after, .site-nav > a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+  .site-nav > a:not(.nav-contact):hover { transform: translateY(-2px); }
+  .site-nav > a:not(.nav-contact) { transition: color .2s ease, transform .3s var(--ease-out); }
+
+  .nav-contact { position: relative; overflow: hidden; transition: color .3s ease, border-color .3s ease, transform .3s var(--ease-out), box-shadow .3s ease; }
+  .nav-contact::before { position: absolute; inset: 0; z-index: -1; background: var(--gold); content: ""; transform: translateY(101%); transition: transform .35s var(--ease-out); }
+  .nav-contact { isolation: isolate; }
+  .nav-contact:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(99,73,28,.2); background: transparent; }
+  .nav-contact:hover::before { transform: translateY(0); }
+  .nav-contact span { display: inline-block; transition: transform .3s var(--ease-out), color .3s ease; }
+  .nav-contact:hover span { color: #fff; transform: translate(3px,-3px) rotate(10deg); }
+
+  /* ---------- Botões ---------- */
+  .button { position: relative; overflow: hidden; transition: transform .3s var(--ease-spring), box-shadow .3s ease, background .3s ease; }
+  .button::after { position: absolute; top: -50%; left: -60%; width: 35%; height: 200%; background: linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent); content: ""; transform: translateX(-180%) rotate(18deg); transition: transform .8s ease; pointer-events: none; }
+  .button:hover { transform: translateY(-4px) scale(1.03); }
+  .button:hover::after { transform: translateX(650%) rotate(18deg); }
+  .button:active { transform: translateY(0) scale(.97); transition-duration: .1s; }
+  .button span[aria-hidden="true"] { display: inline-block; transition: transform .3s var(--ease-spring); }
+  .button:hover span[aria-hidden="true"] { transform: translate(4px,-4px) rotate(12deg) scale(1.2); }
+  .button-primary:hover { box-shadow: 0 14px 34px rgba(99,73,28,.32); }
+
+  .text-link { position: relative; transition: color .2s ease, gap .3s var(--ease-out), transform .3s var(--ease-out); }
+  .text-link:hover { gap: 14px; transform: translateX(3px); }
+  .text-link span { display: inline-block; transition: transform .3s var(--ease-spring); }
+  .text-link:hover span { transform: translate(3px,-3px) scale(1.25); }
+  .scroll-cue span, .back-top { transition: transform .3s var(--ease-out), color .2s ease; }
+  .scroll-cue:hover span { animation: arrow-nudge .8s ease-in-out infinite; }
+  .back-top:hover { transform: translateY(-3px); }
+
+  /* ---------- Hero ---------- */
+  .browser-window { transition: box-shadow .4s ease, scale .5s var(--ease-out); }
+  .browser-window:hover { scale: 1.04; box-shadow: 0 34px 90px rgba(61,48,25,.22); animation-play-state: paused; }
+  .browser-window:hover .mock-cta, .browser-window:hover .mock-button { animation: spark-twinkle 1s ease-in-out infinite; }
+  .mock-sun { transition: transform .8s var(--ease-out); }
+  .browser-window:hover .mock-sun { transform: translate(-14px,10px) scale(1.2); }
+  .mock-title, .mock-description, .mock-nav-items i { transition: transform .45s var(--ease-out); transform-origin: left; }
+  .browser-window:hover .mock-title { transform: scaleX(1.06); }
+  .browser-window:hover .mock-nav-items i { transform: scaleX(1.4); }
+  .float-chip { transition: scale .35s var(--ease-spring), box-shadow .3s ease, border-color .3s ease; cursor: default; }
+  .float-chip:hover { scale: 1.1; border-color: rgba(169,130,63,.5); box-shadow: 0 16px 34px rgba(99,73,28,.22); }
+  .art-cross { transition: color .3s ease; }
+
+  /* ---------- Brilho que segue o mouse nos cards (usa --mx/--my do animacoes.js) ---------- */
+  .service-card, .detail-service, .pricing-card, .process-step, .principle-card { position: relative; }
+  .service-card::after, .detail-service::after, .process-step::after { position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(169,130,63,.14), transparent 70%); content: ""; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+  .service-card:hover::after, .detail-service:hover::after, .process-step:hover::after { opacity: 1; }
+
+  /* ---------- Cards de serviço (home) ---------- */
+  .service-card { transition: transform .4s var(--ease-spring), border-color .3s ease, background .3s ease, box-shadow .4s ease; }
+  .service-card:hover { transform: translateY(-9px) scale(1.015); box-shadow: 0 22px 44px rgba(60,48,27,.14); }
+  .service-card::before { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg,var(--gold),#e3c98f); content: ""; transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease-out); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { transition: transform .5s var(--ease-spring), background .3s ease, box-shadow .3s ease; }
+  .service-card:hover .service-icon { transform: rotate(-8deg) scale(1.18); background: #f1e4c4; box-shadow: 0 8px 18px rgba(169,130,63,.25); }
+  .service-number { transition: color .3s ease, transform .4s var(--ease-spring); }
+  .service-card:hover .service-number { color: var(--gold); transform: scale(1.35); }
+  .service-card > a { transition: gap .3s var(--ease-out), color .2s ease; }
+  .service-card:hover > a { gap: 14px; color: #6f531f; }
+  .wide-decoration { transition: transform 1.2s var(--ease-out), color .4s ease; }
+  .service-card:hover .wide-decoration { transform: rotate(90deg) scale(1.15); color: rgba(169,130,63,.24); }
+
+  /* ---------- Valores / benefícios (home e páginas internas) ---------- */
+  .value-item { transition: transform .35s var(--ease-out); cursor: default; }
+  .value-item:hover { transform: translateY(-4px); }
+  .value-icon { transition: transform .5s var(--ease-spring), background .3s ease, box-shadow .3s ease; }
+  .value-item:hover .value-icon { transform: rotate(180deg) scale(1.2); background: #f1e4c4; box-shadow: 0 6px 14px rgba(169,130,63,.25); }
+
+  .benefit-item { transition: padding .35s var(--ease-out), background .3s ease, border-color .3s ease; border-radius: 6px; }
+  .benefit-item:hover { padding-inline: 16px; background: linear-gradient(90deg,rgba(169,130,63,.09),transparent); border-bottom-color: rgba(169,130,63,.45); }
+  .benefit-index { transition: color .3s ease, transform .35s var(--ease-spring); }
+  .benefit-item:hover .benefit-index { color: var(--gold); transform: scale(1.4); }
+  .benefit-symbol { display: inline-block; transition: transform .6s var(--ease-spring); }
+  .benefit-item:hover .benefit-symbol { transform: rotate(180deg) scale(1.35); }
+  .benefit-item h3 { transition: transform .3s var(--ease-out), color .3s ease; }
+  .benefit-item:hover h3 { transform: translateX(4px); color: #6f531f; }
+
+  .benefit-detail { border-radius: 6px; }
+  .benefit-detail:hover { padding-inline: 16px; background: linear-gradient(90deg,rgba(169,130,63,.1),rgba(255,255,255,.8)); box-shadow: 0 10px 24px rgba(60,48,27,.06); }
+  .benefit-detail-icon { transition: transform .5s var(--ease-spring), background .3s ease, box-shadow .3s ease; }
+  .benefit-detail:hover .benefit-detail-icon { transform: rotate(-12deg) scale(1.25); background: #f1e4c4; box-shadow: 0 6px 14px rgba(169,130,63,.25); }
+  .benefit-detail-number { transition: transform .35s var(--ease-spring), color .3s ease; }
+  .benefit-detail:hover .benefit-detail-number { transform: scale(1.4); color: var(--gold); }
+  .benefit-detail:hover .benefit-detail-arrow { animation: arrow-nudge .7s ease-in-out infinite; }
+  .benefits-seal { transition: transform .6s var(--ease-spring), box-shadow .4s ease; }
+  .benefits-seal:hover { transform: scale(1.08) rotate(-6deg); box-shadow: inset 0 0 0 9px #fff, inset 0 0 0 10px rgba(169,130,63,.3), 0 18px 40px rgba(99,73,28,.18); }
+  .benefits-seal b { transition: color .3s ease; }
+  .benefits-seal:hover b { animation-duration: 3s; }
+
+  .process-step { transition: transform .4s var(--ease-spring), box-shadow .4s ease, border-color .3s ease; }
+  .process-step:hover { transform: translateY(-9px) scale(1.02); border-color: rgba(169,130,63,.4); box-shadow: 0 22px 40px rgba(60,48,27,.13); }
+  .process-step > span { display: inline-block; transition: transform .5s var(--ease-spring), color .3s ease; }
+  .process-step:hover > span { transform: scale(1.5) translateX(6px); color: #8a6a2f; }
+
+  /* ---------- Sobre ---------- */
+  .principle { transition: padding .35s var(--ease-out), background .3s ease; border-radius: 6px; }
+  .principle:hover { padding-inline: 16px; background: linear-gradient(90deg,rgba(169,130,63,.1),transparent); }
+  .principle > span { transition: transform .35s var(--ease-spring), color .3s ease; }
+  .principle:hover > span { transform: scale(1.4); color: var(--gold); }
+  .principle h3 { transition: transform .3s var(--ease-out); }
+  .principle:hover h3 { transform: translateX(4px); }
+  .about-portrait { transition: transform .6s var(--ease-out), box-shadow .5s ease, border-radius .6s var(--ease-out); }
+  .about-portrait:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 28px 60px rgba(99,73,28,.18); border-radius: 44% 44% 16px 16px; }
+  .portrait-monogram { transition: transform .6s var(--ease-spring), letter-spacing .5s ease, text-shadow .4s ease; }
+  .about-portrait:hover .portrait-monogram { transform: scale(1.08); letter-spacing: -.04em; text-shadow: 0 16px 50px rgba(176,138,69,.35); }
+  .about-portrait:hover .ring-one { animation-duration: 6s; }
+  .about-portrait:hover .ring-two { animation-duration: 8s; }
+
+  /* ---------- Portfólio ---------- */
+  .portfolio-placeholder, .portfolio-empty-card { transition: transform .4s var(--ease-spring), border-color .3s ease, box-shadow .4s ease, background .3s ease; }
+  .portfolio-placeholder:hover { transform: translateY(-9px) scale(1.02); box-shadow: 0 24px 46px rgba(60,48,27,.13); }
+  .portfolio-empty-card:hover { transform: translateY(-7px) scale(1.04); border-color: var(--gold); box-shadow: 0 16px 30px rgba(60,48,27,.1); }
+  .placeholder-mark, .portfolio-empty-card > span { transition: transform .5s var(--ease-spring), background .3s ease, box-shadow .3s ease; }
+  .portfolio-placeholder:hover .placeholder-mark { transform: rotate(180deg) scale(1.25); box-shadow: 0 0 0 10px rgba(169,130,63,.1); }
+  .portfolio-empty-card:hover > span { transform: rotate(90deg) scale(1.25); background: #f7f1e4; box-shadow: 0 0 0 8px rgba(169,130,63,.1); }
+  .portfolio-placeholder:hover .placeholder-number { color: var(--gold); }
+  .portfolio-edition { transition: transform .35s var(--ease-out); }
+  .portfolio-edition:hover { transform: translateX(-6px); }
+
+  /* ---------- Serviços detalhados ---------- */
+  .detail-service { transition: transform .4s var(--ease-spring), box-shadow .4s ease, border-color .3s ease, background .3s ease; }
+  .detail-service:hover { transform: translateY(-9px) scale(1.012); border-color: rgba(169,130,63,.45); box-shadow: 0 24px 48px rgba(60,48,27,.14); }
+  .detail-icon { display: inline-grid; transition: transform .5s var(--ease-spring), color .3s ease; }
+  .detail-service:hover .detail-icon { transform: rotate(-12deg) scale(1.3); }
+  .detail-number { display: inline-block; transition: transform .4s var(--ease-spring), color .3s ease; }
+  .detail-service:hover .detail-number { transform: scale(1.35); color: var(--gold); }
+  .detail-service:hover li { animation: list-in .45s var(--ease-out) both; }
+  .detail-service:hover li:nth-child(2) { animation-delay: .08s; }
+  .detail-service:hover li:nth-child(3) { animation-delay: .16s; }
+  .detail-service > a { display: inline-flex; gap: 8px; transition: gap .3s var(--ease-out), color .2s ease; }
+  .detail-service:hover > a { gap: 15px; color: #6f531f; }
+
+  .filter-button { transition: transform .3s var(--ease-spring), background .25s ease, color .25s ease, border-color .25s ease, box-shadow .3s ease; cursor: pointer; }
+  .filter-button:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 18px rgba(99,73,28,.14); }
+  .filter-button:active { transform: scale(.95); }
+
+  /* ---------- Planos ---------- */
+  .pricing-card { transition: transform .4s var(--ease-spring), box-shadow .4s ease, border-color .3s ease; }
+  .pricing-card:hover { transform: translateY(-12px) scale(1.03); border-color: rgba(169,130,63,.55); box-shadow: 0 30px 56px rgba(99,73,28,.2); }
+  .pricing-value { transition: transform .45s var(--ease-spring), color .3s ease; transform-origin: left center; }
+  .pricing-card:hover .pricing-value { transform: scale(1.14); color: #8a6a2f; }
+  .pricing-cta { position: relative; overflow: hidden; transition: transform .3s var(--ease-spring), box-shadow .3s ease, background .3s ease, gap .3s ease; }
+  .pricing-cta:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 22px rgba(99,73,28,.22); }
+  .pricing-cta span { display: inline-block; transition: transform .3s var(--ease-spring); }
+  .pricing-cta:hover span { transform: translate(4px,-4px) rotate(12deg) scale(1.2); }
+  .pricing-index { transition: letter-spacing .35s ease, color .3s ease; }
+  .pricing-card:hover .pricing-index { letter-spacing: .2em; color: var(--gold); }
+  .services-note > span { display: inline-block; transition: transform .6s var(--ease-spring); }
+  .services-note:hover > span { transform: rotate(180deg) scale(1.4); }
+
+  /* ---------- Contato ---------- */
+  .contact-direct { transition: transform .35s var(--ease-out); }
+  .contact-direct:hover { transform: translateX(8px); }
+  .contact-direct-icon { transition: transform .5s var(--ease-spring), background .3s ease, box-shadow .3s ease, color .3s ease; }
+  .contact-direct:hover .contact-direct-icon { transform: rotate(-12deg) scale(1.2); background: var(--gold); color: #fff; box-shadow: 0 8px 18px rgba(169,130,63,.35); }
+  .contact-direct a { position: relative; transition: color .25s ease; }
+  .contact-direct a:hover { color: var(--gold); }
+  .contact-form { transition: box-shadow .4s ease, transform .4s var(--ease-out), border-color .3s ease; }
+  .contact-form:hover { transform: translateY(-5px); box-shadow: 0 30px 70px rgba(60,48,27,.15); border-color: rgba(169,130,63,.4); }
+  .contact-form input, .contact-form select, .contact-form textarea { transition: border-color .2s ease, box-shadow .25s ease, transform .3s var(--ease-out), background .25s ease; }
+  .contact-form input:hover, .contact-form select:hover, .contact-form textarea:hover { border-color: rgba(169,130,63,.5); transform: translateX(3px); }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { transform: translateX(5px) scale(1.01); background: #fffdf8; }
+  .contact-form label { transition: color .25s ease, transform .3s var(--ease-out); }
+  .contact-form label:hover { color: var(--gold); transform: translateX(3px); }
+  .contact-bottom a { display: inline-block; transition: transform .3s var(--ease-out), color .2s ease; }
+  .contact-bottom a:hover { transform: translateX(6px); color: #6f531f; }
+
+  /* Cartão de contato da home */
+  .contact-card { transition: box-shadow .5s ease, transform .5s var(--ease-out), border-color .3s ease; }
+  .contact-card:hover { transform: translateY(-6px); box-shadow: 0 30px 64px rgba(60,48,27,.14); border-color: rgba(169,130,63,.45); }
+  .contact-art { transition: transform .8s var(--ease-out); }
+  .contact-card:hover .contact-art { transform: scale(1.12) rotate(6deg); }
+  .contact-card:hover .contact-star { animation-duration: 8s; }
+  .email-link { transition: transform .3s var(--ease-out); }
+  .email-link:hover { transform: translateX(6px); }
+
+  /* ---------- CTAs de fim de página ---------- */
+  .portfolio-cta, .benefits-cta, .about-cta, .services-note { transition: transform .4s var(--ease-out), box-shadow .4s ease; }
+  .portfolio-cta:hover, .benefits-cta:hover, .services-note:hover { transform: translateY(-5px); box-shadow: 0 20px 44px rgba(60,48,27,.12); }
+
+  /* ---------- Rodapé ---------- */
+  .footer-brand .brand-mark { transition: transform .5s var(--ease-spring); }
+  .footer-brand:hover .brand-mark { transform: rotate(360deg) scale(1.15); }
+}
+
+/* Foco por teclado ganha o mesmo destaque */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  .reveal { animation: none; }
+}
