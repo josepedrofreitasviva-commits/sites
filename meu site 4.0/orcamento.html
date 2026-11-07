@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050c14">
+  <meta name="description" content="Descubra o plano ideal para o seu site e o valor do projeto.">
+  <title>Calculadora de orçamento — HULO</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animacoes.css">
+  <link rel="stylesheet" href="glass.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="ferramentas.css">
+  <script src="back.js" defer></script>
+  <script src="animacoes.js" defer></script>
+  <script src="extras.js" defer></script>
+  <script src="motion.js" defer></script>
+  <script src="ferramentas.js" defer></script>
+</head>
+<body data-page="orcamento">
+  <a class="skip-link" href="#principal">Pular para o conteúdo</a>
+  <header class="site-header"><div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="HULO — início"><span class="brand-mark">H</span><span>HULO<span class="brand-dot">.</span></span></a>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
+      <a href="sobre.html">Sobre</a><a href="servicos.html">Serviços</a><a href="portfolio.html">Portfólio</a><a href="vantagens.html">Vantagens</a><div class="nav-more"><button type="button" class="nav-more-btn" aria-expanded="false" aria-haspopup="true">Ferramentas <span aria-hidden="true">▾</span></button><div class="nav-menu"><a href="orcamento.html">Calcular orçamento</a><a href="diagnostico.html">Diagnóstico grátis</a><a href="agendar.html">Agendar conversa</a><a href="processo.html">Como funciona</a><a href="faq.html">Perguntas frequentes</a></div></div><a class="nav-contact" href="contato.html">Vamos conversar <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div></header>
+  <main id="principal" class="inner-page">
+    <section class="inner-hero container reveal"><p class="eyebrow"><span class="status-dot"></span> Calculadora</p><h1>Descubra o plano <span class="text-gradient">ideal para você.</span></h1><p class="hero-lead">Responda em 30 segundos e veja qual plano combina com o seu negócio.</p></section>
+    
+<section class="container tool-grid">
+ <div class="tool-card reveal">
+  <h3>1. Qual é o seu negócio?</h3><div class="chips" id="o-tipo"></div>
+  <h3>2. Quantas páginas você imagina? <b id="o-pg-val" class="pill">3</b></h3>
+  <input type="range" id="o-pg" min="1" max="10" value="3" aria-label="Número de páginas">
+  <h3>3. O que não pode faltar?</h3><div class="chips" id="o-func"></div>
+ </div>
+ <aside class="tool-card result-card reveal" aria-live="polite">
+  <span class="pricing-index">PLANO INDICADO</span>
+  <h2 id="o-plano">Básico</h2>
+  <div class="big-price">R$ <b id="o-preco">350</b></div>
+  <p class="muted" id="o-desc"></p>
+  <div class="meter"><i id="o-meter"></i></div>
+  <ul class="tick-list" id="o-lista"></ul>
+  <div class="result-actions"><a class="button button-primary" id="o-ped" href="contato.html?plano=basico">Pedir este plano <span aria-hidden="true">↗</span></a><button class="button ghost" type="button" id="o-wa">Enviar no WhatsApp</button></div>
+ </aside>
+</section>
+<section class="container compare reveal"><h2 class="mini-h">Compare os planos</h2><div class="compare-row" id="o-cmp"></div></section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="#topo"><span class="brand-mark">H</span><span>HULO<span class="brand-dot">.</span></span></a><p>Sites com intenção. Presença com personalidade.</p><a class="back-top" href="#topo">Voltar ao topo ↑</a><span class="copyright">© <span id="current-year"></span> HULO. Feito com cuidado.</span></div></footer>
+</body>
+</html>

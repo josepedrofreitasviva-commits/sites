@@ -1,0 +1,51 @@
+/* HULO — camada de animações (todas as páginas) */
+/* Entrada de página e transição entre páginas */
+body{animation:pgIn .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pgIn{from{opacity:0;transform:translateY(14px)}}
+body.leaving{opacity:0;transform:translateY(-10px);transition:.28s ease}
+/* Reveals com variações e cascata */
+.reveal{transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)!important}
+.stagger>*{opacity:0;transform:translateY(34px) scale(.97);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*90ms)}
+.stagger.is-in>*{opacity:1;transform:none}
+.from-left{opacity:0;transform:translateX(-60px)}.from-right{opacity:0;transform:translateX(60px)}
+.from-left.is-in,.from-right.is-in{opacity:1;transform:none;transition:.9s cubic-bezier(.2,.8,.2,1)}
+/* Títulos palavra por palavra */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em}
+.w>i{display:inline-block;font-style:normal;transform:translateY(110%) rotate(4deg);transition:transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--k)*55ms)}
+.split-in .w>i{transform:none}
+.split-fade{opacity:0;transition:opacity .8s .5s}.split-in .split-fade{opacity:1}
+/* Tilt 3D + spotlight */
+.service-card,.detail-service,.pricing-card,.benefit-item,.step,.stat,.tool-card:not(.quiz):not(.score-card),.tl-card{transform-style:preserve-3d;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px))}
+.service-card:hover,.detail-service:hover,.pricing-card:hover,.benefit-item:hover,.step:hover,.stat:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-8px)}
+.service-card::before,.pricing-card::before,.step::before,.stat::before,.tool-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(92,203,250,.18),transparent 60%)}
+.service-card:hover::before,.pricing-card:hover::before,.step:hover::before,.stat:hover::before,.tool-card:hover::before{opacity:1}
+.service-card,.pricing-card,.step,.stat,.tool-card{position:relative}
+/* Ripple */
+.rip{position:absolute;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.4);transform:scale(0);animation:rip .7s ease-out forwards}
+@keyframes rip{to{transform:scale(1);opacity:0}}
+/* Partículas no hero */
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.7}
+/* Flutuações contínuas */
+.float-chip,.chip-top,.chip-bottom{animation:floaty 5.5s ease-in-out infinite}.chip-bottom{animation-delay:-2.7s}
+.art-cross,.contact-star,.contact-spark,.wide-decoration{animation:spin 14s linear infinite}
+.orbit{animation:spin 40s linear infinite}.orbit-two{animation-direction:reverse;animation-duration:60s}
+.browser-window{animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{50%{translate:0 -12px}}@keyframes spin{to{rotate:360deg}}
+.status-dot{animation:ping 2s ease-out infinite}@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,46,147,.7)}100%{box-shadow:0 0 0 12px rgba(255,46,147,0)}}
+/* Linhas e links animados */
+.label-rule,.section-label::after{transform-origin:left;animation:none}
+.site-nav>a:not(.nav-contact){position:relative}
+.site-nav>a:not(.nav-contact)::after,.nav-more-btn::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:linear-gradient(90deg,#5ccbfa,#ff2e93);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.site-nav>a:not(.nav-contact):hover::after,.site-nav>a.is-current::after,.nav-more-btn:hover::after{transform:scaleX(1);transform-origin:left}
+.text-gradient{background-size:220% 100%;animation:shine 6s ease-in-out infinite alternate}@keyframes shine{to{background-position:100% 0}}
+.button-primary{animation:glowpulse 3.2s ease-in-out infinite}@keyframes glowpulse{50%{box-shadow:0 8px 40px rgba(92,203,250,.5)}}
+/* Menu Ferramentas */
+.nav-more{position:relative}
+.nav-more-btn{all:unset;position:relative;cursor:pointer;color:#b7bac6;font-size:13px;transition:color .2s}.nav-more-btn:hover,.nav-more.open .nav-more-btn{color:#fff}
+.nav-more-btn span{display:inline-block;transition:transform .3s}.nav-more.open .nav-more-btn span{transform:rotate(180deg)}
+.nav-menu{position:absolute;top:calc(100% + 18px);left:50%;min-width:230px;padding:8px;border-radius:16px;border:1px solid var(--g-bd);background:rgba(10,20,34,.78);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);box-shadow:var(--g-sh);opacity:0;visibility:hidden;transform:translate(-50%,10px) scale(.96);transition:.28s cubic-bezier(.2,.8,.2,1)}
+.nav-more:hover .nav-menu,.nav-more.open .nav-menu{opacity:1;visibility:visible;transform:translate(-50%,0) scale(1)}
+.nav-menu a{display:block;padding:11px 14px;border-radius:10px;color:#cfe0f5;font-size:13px;transition:background .2s,padding .2s}
+.nav-menu a:hover{background:rgba(92,203,250,.2);padding-left:20px;color:#fff}
+@media(max-width:860px){.nav-menu{position:static;transform:none;opacity:1;visibility:visible;margin-top:8px;background:transparent;border:0;box-shadow:none;display:none}.nav-more.open .nav-menu{display:block;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.w>i,.stagger>*{transform:none;opacity:1}}
