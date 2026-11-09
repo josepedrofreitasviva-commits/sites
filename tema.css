@@ -1,0 +1,68 @@
+/* HULO — tema final: cinza-chumbo e azul-gelo. Cores sólidas, sem degradês. */
+:root{color-scheme:dark;--bg:#23272d;--bg-soft:#2a2f36;--panel:#2b3037;--panel-light:#333943;--text:#eef3f7;--ink:#eef3f7;--muted:#a7b0bb;--faint:#7c8693;--line:rgba(255,255,255,.1);
+ --ice:#bfe7f8;--ice2:#8fc9e6;--sky:#bfe7f8;--blue:#bfe7f8;--purple:#8fc9e6;--mint:#bfe7f8;--dark:#1d2127;
+ --g-bg:rgba(255,255,255,.04);--g-bg2:rgba(255,255,255,.07);--g-bd:rgba(255,255,255,.11);--g-sh:0 12px 30px rgba(0,0,0,.35)}
+html,body{background:#23272d!important;color:var(--text)}body{background-image:none!important}
+::selection{background:#bfe7f8;color:#1d2127}html{accent-color:#bfe7f8}
+h1,h2,h3,h4,.brand,.pricing-value{color:#fff}
+.text-gradient{background:none!important;-webkit-text-fill-color:#bfe7f8!important;color:#bfe7f8!important;animation:none!important}
+.stat strong,.big-price b{background:none!important;-webkit-text-fill-color:#bfe7f8!important}
+.section-label span,.eyebrow{color:#8fc9e6}.label-rule{background:#bfe7f8!important}
+.status-dot{background:#bfe7f8!important;box-shadow:none}.brand-dot{color:#bfe7f8}
+
+.site-header{background:rgba(35,39,45,.78)!important;border-bottom:1px solid rgba(255,255,255,.1)}
+.nav-contact{border-color:#bfe7f8!important;color:#fff!important;background:transparent!important}.nav-contact:hover{background:#bfe7f8!important;color:#1d2127!important}.nav-contact span{color:#bfe7f8!important}.nav-contact:hover span{color:#1d2127!important}
+.site-nav>a.is-current{color:#fff;text-shadow:none}
+.site-nav>a:not(.nav-contact)::after,.nav-more-btn::after{background:#bfe7f8}
+@media(max-width:860px){.site-nav{background:rgba(35,39,45,.97)!important}}
+.site-footer{background:rgba(29,33,39,.85)!important;border-top:1px solid rgba(255,255,255,.1)}
+
+.button-primary{background:#bfe7f8!important;color:#1d2127!important;box-shadow:none!important;animation:none!important}
+.button-primary span{color:#1d2127!important}.button-primary::after{display:none}.button-primary:hover{background:#d6f0fb!important}
+.button.ghost{color:#fff;border:1px solid #8fc9e6}.button.ghost:hover{background:rgba(191,231,248,.12)}
+.filter-button.is-active,.chip[aria-pressed=true]{background:#bfe7f8!important;border-color:#bfe7f8!important;color:#1d2127!important;box-shadow:none}
+.chip:hover,.filter-button:hover{border-color:#8fc9e6}
+
+.service-card,.detail-service,.process-step,.pricing-card,.benefit-item,.value-item,.contact-direct,.portfolio-empty-card,.services-note,.step,.faq-item,.tool-card,.tl-card,.stat,.cmp{box-shadow:var(--g-sh)!important;border-radius:14px}
+.service-card:hover,.detail-service:hover,.pricing-card:hover,.benefit-item:hover,.step:hover,.stat:hover{border-color:rgba(191,231,248,.55)!important;box-shadow:0 14px 32px rgba(0,0,0,.4)!important}
+.pricing-card-featured,.cmp.rec{border-color:#bfe7f8!important;box-shadow:0 0 0 1px rgba(191,231,248,.4)!important}
+.pricing-badge{background:#bfe7f8!important;color:#1d2127!important}
+.service-icon,.detail-icon,.value-icon,.benefit-symbol{color:#bfe7f8}.browser-window{animation:none!important}
+
+input,textarea,select{background:rgba(255,255,255,.05)!important;color:#fff!important;border-color:rgba(255,255,255,.14)!important;border-radius:10px!important}
+input:focus,textarea:focus,select:focus{border-color:#bfe7f8!important;box-shadow:0 0 0 3px rgba(191,231,248,.18)!important}
+select option{background:#2b3037;color:#fff}
+.progress{height:2px;background:#bfe7f8;box-shadow:none}.meter{background:rgba(255,255,255,.12)}.meter i{background:#bfe7f8}
+input[type=range]{background:rgba(255,255,255,.16)!important}input[type=range]::-webkit-slider-thumb{background:#bfe7f8;border-color:#23272d;box-shadow:none}
+.pill{background:rgba(191,231,248,.2)}.tick-list li::before{background:rgba(191,231,248,.18);color:#bfe7f8}
+.check-list li.on i{background:#bfe7f8;border-color:#bfe7f8;color:#1d2127}.tl-card em,.step em{background:#bfe7f8;color:#1d2127;box-shadow:none}
+.tl-line i{background:#bfe7f8;box-shadow:none}.tl-tag{color:#8fc9e6}.ring-bg{stroke:rgba(255,255,255,.12)}.ring-fg{stroke:#bfe7f8;filter:none}
+.faq-item button::after{color:#bfe7f8}.faq-item mark{background:rgba(191,231,248,.3);color:#fff}
+
+.dock button,.dock a{background:rgba(43,48,55,.92);color:#fff;border:1px solid rgba(255,255,255,.14);box-shadow:var(--g-sh);border-radius:10px}
+.dock button{width:auto;height:42px;padding:0 16px;font-size:13px}
+.dock .wa-pill{width:auto;height:auto;min-height:46px;gap:12px;padding:0 19px;display:inline-flex;align-items:center;font-size:13px;font-weight:650;white-space:nowrap;background:#fff;color:#1d2127;border:0}
+.dock{align-items:flex-end}.dock button:hover,.dock a:hover{transform:none;border-color:#bfe7f8}
+.toast{background:#2b3037;color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:10px}
+.palette{background:rgba(20,23,27,.65)}.palette-box li.sel,.palette-box li:hover{background:rgba(191,231,248,.16);color:#fff}
+.nav-menu{background:rgba(35,39,45,.96)}.nav-menu a:hover{background:rgba(191,231,248,.14)}
+
+/* ---- Símbolos visíveis: o CSS original tinha fundos claros que escondiam os ícones ---- */
+.brand-mark{background:#1d2127!important;border:1px solid #d4af37!important;color:#d4af37!important;font-weight:700}
+.brand:hover .brand-mark,.footer-brand:hover .brand-mark{background:#1d2127!important;box-shadow:0 6px 16px rgba(212,175,55,.3)!important}
+.service-icon,.value-icon,.detail-icon,.contact-direct-icon,.benefit-detail-icon,.placeholder-mark,.portfolio-placeholder:hover .placeholder-mark{background:#2f353d!important;border:1px solid rgba(191,231,248,.4)!important;color:#bfe7f8!important}
+.sparkle{background:#2f353d!important;border:0!important;color:#bfe7f8!important}
+.icon-paw,.icon-food{color:#bfe7f8!important}
+.chip-icon,.art-cross,.contact-star,.benefit-symbol,.project-arrow,.portfolio-disclaimer span{color:#bfe7f8!important}
+.wide-decoration{color:rgba(191,231,248,.18)!important}
+.menu-toggle{background:#2f353d!important}.menu-toggle span{background:#eef3f7!important}
+
+/* ---- Texto claro e legível sobre o chumbo (o CSS original usava cinzas escuros) ---- */
+main p,main li,main small,main label,.site-footer p,.site-footer span,.hero-lead,.intro-text,.eyebrow,.hero-note,.hero-bottom,.hero-bottom span,.copyright,.pricing-caption,.pricing-description,.pricing-footnote,.filter-status,.portfolio-disclaimer,.contact-direct small{color:#a7b0bb!important}
+strong,b,.brand,.pricing-value,.pricing-value span{color:#fff!important}
+.service-card a,.detail-service a,.text-link{color:#bfe7f8!important}.text-link:hover{color:#fff!important}
+.filter-button{color:#dfe7ee!important}.filter-button.is-active{color:#3361a7!important}
+.nav-menu a{color:#7bebe5!important}
+.button-primary,.button-primary span,.pricing-badge{color:#1d2127!important}
+.button-light{background:#fff!important;color:#1d2127!important}
+.browser-bar,.browser-page{background:#2a2f36!important}.browser-address{background:#23272d!important;color:#a7b0bb!important}
